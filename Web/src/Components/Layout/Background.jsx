@@ -1,5 +1,4 @@
 import React from 'react'
-import { background } from '../../Resources'
 
 function Background ({ children }) {
   const backgroundStyle = {
@@ -9,10 +8,7 @@ function Background ({ children }) {
     left: 0,
     right: 0,
     overflow: 'hidden',
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'noRepeat'
+    backgroundColor: "#191C1F",
   }
 
   return <div style={backgroundStyle}>{children}</div>

@@ -29,10 +29,6 @@ export function Button ({ round, disabled, icon, label, onClick, style, iconStyl
       <motion.div
         whileTap={disabled ? '' : 'click'}
         whileHover={disabled ? '' : 'hovered'}
-        variants={{
-          click: { scale: 1, boxShadow: '5px 5px 13px 3px rgba(255, 255, 255, 0.24)' },
-          hovered: { scale: 1.05, boxShadow: '0px 4px 13px 3px rgba(255, 255, 255, 0.44)' }
-        }}
         onTap={disabled ? null : onClick}
         style={buttonStyle}
       >

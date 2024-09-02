@@ -1,12 +1,10 @@
 {
-  "name": "self-hosted-expo-update-server-web",
-  "description": "Self Hosted Expo Update Server Management Web Dashboard",
-  "version": "1.0.6",
+  "name": "orion-expo-updates-server-web",
+  "version": "1.0.0",
   "private": true,
   "main": "src",
-  "author": {
-    "name": "Umberto Ghio",
-    "email": "umberto@ghio.io"
+  "scripts": {
+    "start": "vite"
   },
   "dependencies": {
     "@feathersjs/authentication-client": "^4.5.11",

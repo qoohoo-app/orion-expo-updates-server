@@ -26,12 +26,6 @@ export function TopMenu ({ licenses, history }) {
           <HamburgerMenu />
           <Text color={Colors.primary} title size='20px' style={{ marginLeft: 10 }} value={(currentPage || '').toUpperCase()} />
         </Flex>
-        <Flex fh style={{ marginRight: 20 }}>
-          <a href='https://ghio.io' target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }}>
-            <Text value='free software by GHIO.IO' size={10} color={Colors.primary} style={{ width: 64, textAlign: 'right' }} />
-          </a>
-
-        </Flex>
       </motion.div>
 
     </>

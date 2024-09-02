@@ -23,9 +23,9 @@ function App () {
   const [isLoading, setIsLoading] = useState(true)
 
   useMount(async () => {
-    state?.user?.state?.accessToken && await jwtLogin()
+    state?.user?.state?.accessToken && await jwtLogin();
     setIsLoading(false)
-  })
+  });
 
   if (isLoading) return <Spinner />
   return (

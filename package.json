@@ -1,12 +1,8 @@
 {
-  "name": "self-hosted-expo-updates-server",
+  "name": "orion-expo-updates-server",
   "version": "1.0.0",
-  "description": "Self Hosted Expo Updates Server with interactive Dashboard",
-  "repository": "https://github.com/umbertoghio/self-hosted-expo-updates-server.git",
-  "homepage": "https://github.com/umbertoghio/self-hosted-expo-updates-server",
   "license": "MIT",
   "scripts": {
-    "---Dev API & Web---": "",
     "dev:run": "cd Docker/development; docker-compose up --build",
     "dev:stop": "cd Docker/development; docker-compose down"
   },

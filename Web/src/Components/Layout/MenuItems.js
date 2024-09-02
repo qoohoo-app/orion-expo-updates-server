@@ -1,6 +1,6 @@
 const menuItems = [
   {
-    label: 'MY APPS',
+    label: 'My Apps',
     icon: 'home',
     path: '/home'
   },
@@ -8,12 +8,6 @@ const menuItems = [
     label: 'New App',
     icon: 'plus',
     path: '/new'
-  },
-  {
-    label: 'Documentation',
-    icon: 'book',
-    path: 'https://github.com/umbertoghio/self-hosted-expo-updates-server',
-    external: true
   },
   {
     label: 'Logout',
