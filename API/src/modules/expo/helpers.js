@@ -25,16 +25,10 @@ module.exports.signRSASHA256 = (data, privateKey) => {
 }
 
 module.exports.getPrivateKeyAsync = async () => {
-  const privateKeyPath = process.env.PRIVATE_KEY_PATH
-  if (!privateKeyPath) return null
+  const privateKey = process.env.PRIVATE_KEY_PEM;
+  if (!privateKey) return null
 
-  let pemBuffer = ''
-  try {
-    pemBuffer = fs.readFileSync(path.resolve(privateKeyPath))
-    return pemBuffer.toString('utf8')
-  } catch (e) {
-    return false
-  }
+  return privateKey;
 }
 
 module.exports.getAssetMetadataSync = ({ update, filePath, ext, isLaunchAsset, platform }) => {

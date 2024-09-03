@@ -1,13 +1,8 @@
 {
-  "name": "self-hosted-expo-update-server-api",
-  "description": "Self Hosted Expo Update Server Management API",
-  "version": "1.0.6",
+  "name": "orion-expo-updates-server-api",
+  "version": "1.0.0",
   "private": true,
   "main": "src",
-  "author": {
-    "name": "Umberto Ghio",
-    "email": "umberto@ghio.io"
-  },
   "directories": {
     "lib": "src",
     "config": "config/"

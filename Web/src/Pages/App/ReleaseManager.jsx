@@ -6,7 +6,6 @@ import moment from 'moment'
 import { useCQuery } from '../../Services'
 import { Button, Card, Spinner } from '../../Components'
 import { Release } from './Release'
-import { UpdateInstructions } from './UpdateInstructions'
 
 export const ReleaseManager = ({ app }) => {
   const { data: uploads, isSuccess } = useCQuery(['uploads', app._id])
@@ -14,14 +13,6 @@ export const ReleaseManager = ({ app }) => {
   const [releasing, setRelasing] = useState(false)
 
   if (!isSuccess) return <Spinner />
-
-  if (!uploads.length) {
-    return (
-      <Card {...cardProps}>
-        <UpdateInstructions app={app} />
-      </Card>
-    )
-  }
 
   return (
     <Card {...cardProps}>

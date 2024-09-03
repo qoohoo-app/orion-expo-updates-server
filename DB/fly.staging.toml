@@ -1,0 +1,40 @@
+app = "orion-expo-update-server-db-staging"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+primary_region = 'bom'
+
+[env]
+  PORT = "27017"
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  internal_port = 27017
+  processes = ["app"]
+  protocol = "tcp"
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    port = 27017
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+[[mounts]]
+    destination = "/var/lib/mongodb"
+    source = "orion_expo_update_mongo_db_staging"
+    initial_size = "1GB"
+    auto_extend_size_threshold = 80
+    auto_extend_size_increment = "1GB"
+    auto_extend_size_limit = "5GB"

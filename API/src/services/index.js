@@ -11,7 +11,7 @@ class ServiceNoBsonID extends Service {
 }
 
 // Default Middleware
-const defeultMiddleware = (req, res, next) => {
+const defaultMiddleware = (req, res, next) => {
   next()
 }
 
@@ -30,25 +30,26 @@ module.exports = function (app) {
 
   services.forEach((service) => {
     const { name, middleware, noBsonIDs, hooks, createService } = service
+
     // Custom services with special configuration
     if (!name) {
-      app.configure(service)
-      return true
+      app.configure(service);
+      return true;
     }
 
     // Service Configuration with custom Class / Middleware or standard MongoDB Service
     if (createService) {
-      const createdService = createService(defaultOptions)
-      app.use(`/${name}`, createdService, middleware || defeultMiddleware)
+      const createdService = createService(defaultOptions);
+      app.use(`/${name}`, createdService, middleware || defaultMiddleware);
     } else {
-      const createdService = noBsonIDs ? new ServiceNoBsonID(defaultOptions) : new Service(defaultOptions)
-      app.use(`/${name}`, createdService)
+      const createdService = noBsonIDs ? new ServiceNoBsonID(defaultOptions) : new Service(defaultOptions);
+      app.use(`/${name}`, createdService);
       app.get('mongoClient').then((db) => {
-        app.service(name).Model = db.collection(name)
+        app.service(name).Model = db.collection(name);
       })
     }
 
     // Hooks Setup
-    app.service(name).hooks({ ...hooks, error })
+    app.service(name).hooks({ ...hooks, error });
   })
 }

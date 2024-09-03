@@ -1,6 +1,15 @@
 FROM node:16-alpine
 RUN apk update && apk add --no-cache tzdata
 RUN mkdir -p /home/node/server && chown -R node:node /home/node/server
+
+# Create the directories on the docker volume
+RUN mkdir -p /data/updates
+RUN mkdir -p /data/uploads
+
+# Symlink volume to directories
+RUN ln -s /data/updates /home/node/server/updates
+RUN ln -s /data/uploads /home/node/server/uploads
+
 WORKDIR /home/node/server
 USER node
 COPY --chown=node:node package.json yarn.lock ./
