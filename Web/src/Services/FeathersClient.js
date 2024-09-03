@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 import { invalidateQuery } from './QueryCache'
 
 /* ============================== Environment Setup ================================================== */
-const serverUrl = __API_BASE_URL__;
+const serverUrl = import.meta.env.VITE_API_BASE_URL;
 /* ============================== Socket Configuration ================================================== */
 const FC = {
   socket: io(serverUrl, { transports: ['websocket'], forceNew: true }),
