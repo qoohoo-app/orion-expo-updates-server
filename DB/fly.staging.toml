@@ -33,8 +33,12 @@ primary_region = 'bom'
     timeout = "2s"
 [[mounts]]
     destination = "/var/lib/mongodb"
-    source = "orion_expo_update_mongo_db_staging"
+    source = "orion_expo_update_db_staging"
     initial_size = "1GB"
     auto_extend_size_threshold = 80
     auto_extend_size_increment = "1GB"
     auto_extend_size_limit = "5GB"
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 2

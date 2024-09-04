@@ -11,15 +11,17 @@
 
     use admin
 
-    db.createUser({ user: "<username>", pwd: "<superkalam_password>", roles: [{ role: "userAdminAnyDatabase", db: "admin"}, "readWriteAnyDatabase" ]})
+    db.createUser({ user: "<username>", pwd: "<password>", roles: [{ role: "userAdminAnyDatabase", db: "admin"}, "readWriteAnyDatabase" ]})
+
+    exit
+    exit
     ```
-6. Exit out of the shell.
-7. Comment out the initial setup instructions from dockerfile and restore the other line.
-8. Deploy again on fly using 
+6. Comment out the initial setup instructions from dockerfile and restore the other line.
+7. Deploy again on fly using 
     ```
     fly deploy -c=fly.[environment].toml --no-cache
     ```
-9. Your connection string to use now is:
+8. Your connection string to use now is:
     ```
     mongodb://<username>:<password>@<host>:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=admin&appName=mongosh+2.3.0
     ```

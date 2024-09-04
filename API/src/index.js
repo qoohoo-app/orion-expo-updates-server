@@ -22,7 +22,6 @@ const createAdminIfMissing = async () => {
 
 server.on('listening', () => {
   logger.info(`Feathers application started on http://${app.get('host')}:${app.get('port')}`)
-  logger.info(`Env: ${process.env.NODE_ENV} DB: ${app.get('mongodb')}`)
   createAdminIfMissing().catch(err => console.error(`Error: ${err}`));
 })
 
