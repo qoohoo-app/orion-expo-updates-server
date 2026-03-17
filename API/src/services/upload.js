@@ -15,6 +15,7 @@ const createDocument = async (context) => {
     throw new Err.GeneralError('Upload failed')
   }
 
+  console.log("Upserting to mongodb");
   const upload = await context.app.service('uploads')._create({
     createdAt: new Date(),
     originalname: context.params.file.originalname,
@@ -29,12 +30,17 @@ const createDocument = async (context) => {
   })
 
   const path = `/updates/${upload.project}/${upload.version}/${upload._id}`
+  console.log("Clearing existing path");
   fs.rmSync(path, { recursive: true, force: true })
+  console.log("Creating new path");
   fs.mkdirSync(path, { recursive: true })
 
   try {
+    console.log("Extracting zip", upload.filename);
     await fs.createReadStream(upload.filename).pipe(unzipper.Extract({ path })).promise()
+    console.log("Extracted zip");
   } catch (e) {
+    console.log("Error extracting zip");
     fs.rmSync(upload.filename, { force: true })
     fs.rmSync(path, { recursive: true, force: true })
     context.app.service('uploads').remove(upload._id)
@@ -45,9 +51,11 @@ const createDocument = async (context) => {
   let dependencies = null
   let updateId = null
   try {
+    console.log("Getting JSON info");
     const info = getJSONInfo({ path })
     appJson = info.appJson
     dependencies = info.dependencies
+    console.log("Getting updateId");
     updateId = getUpdateId(path)
   } catch (e) {
     fs.rmSync(path, { recursive: true, force: true })
@@ -57,6 +65,7 @@ const createDocument = async (context) => {
     throw new Err.BadRequest('No metadata.json found, was it included in the zip?')
   }
 
+  console.log("Patching path, appJson, dependencies, updateId to mongodb");
   await context.app.service('uploads')._patch(upload._id, { path, appJson, dependencies, updateId })
 
   delete context.result.id
